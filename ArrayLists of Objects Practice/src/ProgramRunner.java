@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 public class ProgramRunner
 	{
 		static ArrayList <Project> TVShows = new ArrayList <Project> ( );
@@ -15,13 +16,60 @@ public class ProgramRunner
 				
 				
 				printList();
+				
+				for(Project p : TVShows){
+					int origonal = p.getNumberOfSeasonsAired();
+					
+					origonal++;
+					p.setNumberOfSeasonsAired(origonal);
+					}
+				
+				System.out.println();
+				
+				printList();
+				
+				// 10
+				ArrayList <Integer>  titleLength = new ArrayList <Integer> ( );
+				
+				for(int i = 0 ; i < TVShows.size(); i++){
+					String title = TVShows.get(i).getTitle();
+					
+					int titleLengthZero = title.length();
+					
+					titleLength.add(titleLengthZero);
+				}
+				
+				int largestTitle = Collections.max(titleLength);
+				
+				for(Project p : TVShows){
+					String titleName = p.getTitle();
+					int titleLength0 = titleName.length();
+					
+					if(titleLength0 == largestTitle){
+						TVShows.remove(p);
+					}
+				}
+				System.out.println();
+				printList();
+				
+				String firstTitle = TVShows.get(0).getTitle();
+				
+				firstTitle = "Something else";
+				
+				TVShows.get(0).setTitle(firstTitle);
+				
+				System.out.println();
+				printList();
+				
 		
 			}
 		public static void printList(){
 			
 			for(Project p : TVShows){
-			System.out.println(p.getGenre());
-			
+			System.out.print(p.getTitle() + ", ");
+			System.out.print(p.getGenre() + ", ");
+			System.out.print(p.getNumberOfSeasonsAired() + " ");
+			System.out.println();
 			}
 		}
 	}
